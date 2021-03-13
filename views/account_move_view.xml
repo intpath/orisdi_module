@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+
+        <record id="account_move_tree_orisdi" model="ir.ui.view">
+            <field name="name">account.move.tree.orisdi</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="arch" type="xml">
+                <field name="invoice_date" position="before">
+                    <field name="sale_shipping_cost" optional="show"/>
+                    <field name="sale_shipping_company_delivery_number" optional="show"/>
+                    <field name="sale_shipping_company_delivery_date" optional="show"/>
+                    <field name="sale_governorate_id" optional="show"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="account_move_form_orisdi" model="ir.ui.view">
+            <field name="name">account.move.form.orisdi</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='ref']" position="after">
+                    <field name="sale_shipping_cost"/>
+                    <field name="sale_shipping_company_delivery_number"/>
+                    <field name="sale_shipping_company_delivery_date"/>
+                    <field name="sale_governorate_id"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+
+        <record id="sale_order_form_orisdi" model="ir.ui.view">
+            <field name="name">sale.order.form.orisdi</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='sale_order_template_id']" position="after">
+                    <field name="shipping_cost_a"/>
+                    <field name="shipping_company_delivery_number"/>
+                    <field name="shipping_company_delivery_date"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sale_order_tree_orisdi" model="ir.ui.view">
+            <field name="name">sale.order.tree.orisdi</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='expected_date']" position="after">
+                    <field name="shipping_cost_a" optional="show" />
+                    <field name="shipping_company_delivery_number" optional="show" />
+                    <field name="shipping_company_delivery_date" optional="show" />                    
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
