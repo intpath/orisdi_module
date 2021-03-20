@@ -6,9 +6,14 @@ from odoo.exceptions import UserError
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    _sql_constraints = [
-        ('unique_name', 'unique (name)', 'Contact already exists!')
-    ]
-
     description = fields.Text("Description")
     
+    @api.model
+    def create(self, values):
+        name = values['name']
+        dup = self.env['res.partner'].search([('name', '=', name)])
+        if dup:
+            raise UserError(_(f"There are already {len(dup)} contact(s) with the same name"))
+        else:
+            result = super(ResPartner, self).create(values)
+            return result
