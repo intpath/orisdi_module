@@ -6,8 +6,8 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='sale_order_template_id']" position="after">
-                    <field name="shipping_cost_a"/>
+                <xpath expr="//field[@name='shipping_cost_a']" position="after">
+<!--                     <field name="shipping_cost_a"/> -->
                     <field name="shipping_company_delivery_number"/>
                     <field name="shipping_company_delivery_date"/>
                 </xpath>

@@ -14,7 +14,7 @@
     'version': '1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'product', 'sale_management', 'account', 'contacts'],
+    'depends': ['base', 'product', 'sale_management', 'account', 'contacts', 'shopify_ept'],
 
     # always loaded
     'data': [

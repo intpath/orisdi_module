@@ -9,17 +9,15 @@ class SaleOrder(models.Model):
     governorate = fields.Many2one("res.country.state")
     shipping_company_delivery_number = fields.Char("Shpping Company Delivery Number")
     shipping_company_delivery_date = fields.Date("Shpping Company Delivery Date")
-    shipping_cost_a = fields.Integer(readonly=True)
+    shipping_cost_a = fields.Integer(compute="_get_shipping_price")
 
-    @api.constrains('order_line')
-    def _get_delivery_product(self):
-        delivery_product__line_id = self.order_line.filtered(lambda x: x.product_id.shipping_product)
-        if len(delivery_product__line_id) == 0:
-            self.shipping_cost_a = 0
+    @api.depends('order_line')
+    def _get_shipping_price(self):
+        for order in self:
+            delivery_lines = order.order_line.filtered(lambda x: x.is_delivery)
+            if delivery_lines:
+                order.shipping_cost_a = sum( delivery_lines.mapped('price_subtotal') )
+            else:
+                order.shipping_cost_a = 0
 
-        elif len(delivery_product__line_id) == 1:
-            self.shipping_cost_a = delivery_product__line_id.price_subtotal
-
-        else:
-            raise UserError(_("More Than One Delivery Products Detected ! You only enter one per sale order"))
         
