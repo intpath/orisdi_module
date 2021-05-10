@@ -9,3 +9,9 @@ class SaleOrder(models.Model):
     governorate = fields.Many2one("res.country.state")
     shipping_company_delivery_number = fields.Char("Shpping Company Delivery Number")
     shipping_company_delivery_date = fields.Date("Shpping Company Delivery Date")        
+
+    def action_confirm(self):
+        date_order = self.date_order
+        res = super(SaleOrder, self).action_confirm
+        self.date_order = date_order
+        return res
