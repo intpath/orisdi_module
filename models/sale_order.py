@@ -12,6 +12,6 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         date_order = self.date_order
-        res = super(SaleOrder, self).action_confirm
+        res = super(SaleOrder, self).action_confirm()
         self.date_order = date_order
         return res
