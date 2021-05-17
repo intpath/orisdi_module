@@ -14,11 +14,12 @@
     'version': '1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'product', 'sale_management', 'account', 'contacts', 'shopify_ept'],
+    'depends': ['base', 'product', 'sale_management', 'account', 'contacts', 'shopify_ept', 'purchase'],
 
     # always loaded
     'data': [
         'views/sale_order_view.xml',
+        'views/purchase_order_views.xml',
         'views/account_move_view.xml',
         'views/res_partner_view.xml',
     ],
